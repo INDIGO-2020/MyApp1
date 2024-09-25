@@ -4,8 +4,9 @@ using NewbiePrjct.AppATM;
 using NewbiePrjct.AppCollection;
 using NewbiePrjct.AppGeometric;
 using NewbiePrjct.AppReadWriteFile;
+using NewbiePrjct.AppSorting;
 
 Console.WriteLine("hello World");
 
-ReadWriteDemo readWrite = new();
-readWrite.Execute();
+ShortListDemo shortListDemo = new ShortListDemo();
+shortListDemo.Execute();

@@ -4,3 +4,4 @@ global using NoobPrjct.AppTicTacToe;
 global using NoobPrjct.AppMinMax;
 global using NoobPrjct.AppRollDice;
 global using NoobPrjct.UnfinishedApp;
+global using NoobPrjct.AppPaperRockScissor;

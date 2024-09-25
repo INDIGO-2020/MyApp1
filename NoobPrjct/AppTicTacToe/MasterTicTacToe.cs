@@ -81,6 +81,7 @@ namespace NoobPrjct.AppTicTacToe
 
             do
             {
+
                 Console.Write("Enter baris #(1-3): ");
                 x = int.Parse(Console.ReadLine());
                 x--;
@@ -153,6 +154,7 @@ namespace NoobPrjct.AppTicTacToe
             {
                 printWinner(' ');
             }
+            Console.Clear();
 
         }
 
@@ -178,6 +180,7 @@ namespace NoobPrjct.AppTicTacToe
 
                 winner = ' ';
                 inputUser = ' ';
+                Console.Clear();
                 resetBoard();
 
                 while (winner == ' ' && checkSpaceKosong() != 0)
@@ -198,7 +201,7 @@ namespace NoobPrjct.AppTicTacToe
                         break;
                     }
                 }
-                printBoard();
+
                 if (checkSpaceKosong() == 0 && winner == ' ')
                 {
                     printWinner(winner);

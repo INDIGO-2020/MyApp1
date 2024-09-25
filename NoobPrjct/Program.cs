@@ -7,8 +7,8 @@ namespace NoobPrjct
     {
         static void Main(string[] args)
         {
-            var app = new MasterPetAdopt();
-            app.mainMenu();
+            var app = new MasterTicTacToe();
+            app.Execute();
         }
     }
 }

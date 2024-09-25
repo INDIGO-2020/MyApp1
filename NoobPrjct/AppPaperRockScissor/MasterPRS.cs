@@ -18,6 +18,7 @@ namespace NoobPrjct.AppPaperRockScissor
         private string winner = " ";
         private string? playerInput = null;
         private string? computerInput = null;
+        private bool gameOn;
         private void computerMove()
         {
             Random random = new Random();
@@ -31,11 +32,38 @@ namespace NoobPrjct.AppPaperRockScissor
 
         private void playerMove()
         {
+            int x;
 
+            do
+            {
+                Console.Write("Masukkan Angka#(1-3): ");
+                x = int.Parse(Console.ReadLine());
+                x--;
+                playerInput = PRSList[x];
+                if (playerInput == null)
+                {
+                    Console.Write("Invalid Input");
+                }
+                else
+                {
+                    Console.WriteLine(playerInput);
+                    break;
+                }
+            } while (gameOn);
         }
         public void Execute()
         {
-            computerMove();
+            char inputUser;
+            do
+            {
+                playerMove();
+                computerMove();
+                Console.Write("Mau main Lagi (Y/N): ");
+                inputUser = char.Parse(Console.ReadLine().ToLower());
+                if (inputUser == 'n')
+                    break;
+                else gameOn = true;
+            } while (gameOn);
         }
     }
 }

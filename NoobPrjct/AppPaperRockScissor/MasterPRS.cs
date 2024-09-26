@@ -17,6 +17,7 @@ namespace NoobPrjct.AppPaperRockScissor
      */
     public class MasterPRS
     {
+        #region versi 1 Aplikasi (Error)
         private string[,] PRSBoard = new string[1, 2];
         private List<string> PRSList = new List<string>()
         {
@@ -119,5 +120,6 @@ namespace NoobPrjct.AppPaperRockScissor
                 else gameOn = true;
             } while (gameOn);
         }
+        #endregion
     }
 }

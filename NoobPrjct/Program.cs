@@ -8,7 +8,7 @@ namespace NoobPrjct
     {
         static void Main(string[] args)
         {
-            var app = new MasterPRS();
+            var app = new MasterPRSv2();
             app.Execute();
         }
     }

@@ -16,18 +16,42 @@ namespace NoobPrjct.AppPaperRockScissor
             "Scissor"
         };
         private string winner = " ";
-        private string? playerInput = "...";
-        private string? computerInput = "...";
+        private string? playerInput;
+        private string? computerInput;
         private bool gameOn;
+
+        private int checkSpaceKosong()
+        {
+            int spaceKosong = 2;
+
+            for (int i = 0; i < PRSBoard.GetLength(0); i++)
+            {
+                for (int j = 0; j < PRSBoard.GetLength(1); j++)
+                {
+                    if (PRSBoard[i, j] != " ")
+                    {
+                        spaceKosong--;
+                    }
+                }
+            }
+            return spaceKosong;
+        }
         private void computerMove()
         {
             Random random = new Random();
-            int computerRandomize;
+            int x,y;
 
-            computerRandomize = random.Next(0, PRSList.Count);
-            computerInput = PRSList[computerRandomize];
+            if (checkSpaceKosong() > 0)
+            {
+                do
+                {
+                    x = random.Next(3);
+                    y = random.Next(3);
+                } while (PRSBoard[x, y] != " ");
+                
+                PRSBoard[x, y] = computerInput;
+            }
 
-            Console.WriteLine(computerInput);
         }
 
         private void playerMove()
@@ -39,17 +63,18 @@ namespace NoobPrjct.AppPaperRockScissor
                 Console.Write("Masukkan Angka#(1-3): ");
                 x = int.Parse(Console.ReadLine());
                 x--;
+
                 playerInput = PRSList[x];
-                if (playerInput == null || playerInput == " ")
+                if (PRSBoard[x,x] != " ")
                 {
-                    Console.Write("Invalid Input");
+                    Console.Write("Invalid Input, Telah terisi");
                 }
                 else
                 {
-                    PRSBoard[x,x] = playerInput;
+                    PRSBoard[x, x] = playerInput;
                     break;
                 }
-            } while (PRSBoard != null);
+            } while (PRSBoard[x, x] != " ");
         }
 
         private void printBoard()
@@ -58,11 +83,11 @@ namespace NoobPrjct.AppPaperRockScissor
             {
                 for (int j = 0; j < PRSBoard.GetLength(1); j++)
                 {
-                    Console.Write($"{PRSBoard[i,j]}");
+                    Console.Write($"{PRSBoard[i, j]}");
                     if (j < PRSBoard.GetLength(1) - 1)
                         Console.Write(" vs ");
                 }
-            Console.WriteLine();
+                Console.WriteLine();
             }
         }
         public void Execute()
@@ -70,7 +95,7 @@ namespace NoobPrjct.AppPaperRockScissor
             char inputUser;
             int angka = 0;
             Console.WriteLine("Selamat datang di Aplikasi Paper-Rock-Scissor v1.0 (testing)\n");
-            Console.WriteLine("\t\t\t**PENTING**");
+            Console.WriteLine("\t\t**PENTING**");
             Console.WriteLine("Anda hanya perlu Meng-input angka pada List dibawah ini");
             for (int i = 0; i < PRSList.Count; i++)
             {

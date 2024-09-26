@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace NoobPrjct.AppPaperRockScissor
 {
+
+    /*
+     * UNTUK ANGGA BILA NANTI UDAH JADI PROGRAMMER YANG MANTAP DAN HUMBLE
+     * TOLONG SELESAIKAN APLIKASI GAMPANG INI, NIATKU INGIN MEMBUAT APLIKASI
+     * KERTAS-GUNTING-BATU DENGAN USER INPUT DAN RANDOMIZE COMPUTER MELALUI 
+     * OUTPUT ARRAY 2 DIMENSI.
+     * 
+     * YANG JELAS AKU PENGEN LIAT INI PROGRAM JALAN.
+     */
     public class MasterPRS
     {
         private string[,] PRSBoard = new string[1, 2];
@@ -16,7 +25,7 @@ namespace NoobPrjct.AppPaperRockScissor
             "Scissor"
         };
         private string winner = " ";
-        private string? playerInput;
+        private string? playerInput = null;
         private string? computerInput;
         private bool gameOn;
 
@@ -39,17 +48,18 @@ namespace NoobPrjct.AppPaperRockScissor
         private void computerMove()
         {
             Random random = new Random();
-            int x,y;
+            int x;
 
             if (checkSpaceKosong() > 0)
             {
                 do
                 {
                     x = random.Next(3);
-                    y = random.Next(3);
-                } while (PRSBoard[x, y] != " ");
-                
-                PRSBoard[x, y] = computerInput;
+                    break;
+                } while (PRSBoard[x, x] == null);
+                computerInput = PRSList[x];
+
+                PRSBoard[x, 1] = computerInput;
             }
 
         }
@@ -65,16 +75,10 @@ namespace NoobPrjct.AppPaperRockScissor
                 x--;
 
                 playerInput = PRSList[x];
-                if (PRSBoard[x,x] != " ")
-                {
-                    Console.Write("Invalid Input, Telah terisi");
-                }
-                else
-                {
-                    PRSBoard[x, x] = playerInput;
-                    break;
-                }
-            } while (PRSBoard[x, x] != " ");
+
+                PRSBoard[x, x] = playerInput;
+                break;
+            } while (PRSBoard[x, x] == " ");
         }
 
         private void printBoard()

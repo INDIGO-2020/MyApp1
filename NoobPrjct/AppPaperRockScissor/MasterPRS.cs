@@ -8,7 +8,7 @@ namespace NoobPrjct.AppPaperRockScissor
 {
     public class MasterPRS
     {
-        private string[,] PRSBoard = new string[0, 1];
+        private string[,] PRSBoard = new string[1, 2];
         private List<string> PRSList = new List<string>()
         {
             "Paper",
@@ -16,8 +16,8 @@ namespace NoobPrjct.AppPaperRockScissor
             "Scissor"
         };
         private string winner = " ";
-        private string? playerInput = null;
-        private string? computerInput = null;
+        private string? playerInput = "...";
+        private string? computerInput = "...";
         private bool gameOn;
         private void computerMove()
         {
@@ -40,23 +40,48 @@ namespace NoobPrjct.AppPaperRockScissor
                 x = int.Parse(Console.ReadLine());
                 x--;
                 playerInput = PRSList[x];
-                if (playerInput == null)
+                if (playerInput == null || playerInput == " ")
                 {
                     Console.Write("Invalid Input");
                 }
                 else
                 {
-                    Console.WriteLine(playerInput);
+                    PRSBoard[x,x] = playerInput;
                     break;
                 }
-            } while (gameOn);
+            } while (PRSBoard != null);
+        }
+
+        private void printBoard()
+        {
+            for (int i = 0; i < PRSBoard.GetLength(0); i++)
+            {
+                for (int j = 0; j < PRSBoard.GetLength(1); j++)
+                {
+                    Console.Write($"{PRSBoard[i,j]}");
+                    if (j < PRSBoard.GetLength(1) - 1)
+                        Console.Write(" vs ");
+                }
+            Console.WriteLine();
+            }
         }
         public void Execute()
         {
             char inputUser;
+            int angka = 0;
+            Console.WriteLine("Selamat datang di Aplikasi Paper-Rock-Scissor v1.0 (testing)\n");
+            Console.WriteLine("\t\t\t**PENTING**");
+            Console.WriteLine("Anda hanya perlu Meng-input angka pada List dibawah ini");
+            for (int i = 0; i < PRSList.Count; i++)
+            {
+                angka++;
+                Console.WriteLine($"Angka {angka} untuk {PRSList[i]}");
+            }
+            Console.WriteLine();
             do
             {
                 playerMove();
+                printBoard();
                 computerMove();
                 Console.Write("Mau main Lagi (Y/N): ");
                 inputUser = char.Parse(Console.ReadLine().ToLower());

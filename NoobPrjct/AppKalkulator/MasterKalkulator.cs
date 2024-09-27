@@ -16,11 +16,11 @@ namespace NoobPrjct.AppKalkulator
     {
         public MasterKalkulator()
         {
-                
+
         }
         public double OperandA { get; set; }
         public double OperandB { get; set; }
-
+        private List<double> historyCalculator = new List<double>();
         public void InputUser()
         {
             Console.Write($"Operand Kiri: ");
@@ -31,31 +31,60 @@ namespace NoobPrjct.AppKalkulator
             OperandB = inputKedua;
 
         }
-        public double Tambah()
+        private double Tambah()
         {
             return OperandA + OperandB;
         }
 
-        public double Kurangi()
+        private double Kurangi()
         {
             return OperandA - OperandB;
         }
 
-        public double Kali()
+        private double Kali()
         {
             return OperandA * OperandB;
         }
 
-        public double Bagi()
+        private double Bagi()
         {
             return OperandA / OperandB;
         }
 
-        public double Modulus()
+        private double Modulus()
         {
             return OperandA % OperandB;
         }
 
+        private int Factorial(int n)
+        {
+            if (n == 1)
+            { 
+                return 1; 
+            }
+            else
+            {
+                return n * Factorial(n - 1);
+            }
+        }
+
+        private void historyCalculate()
+        {
+            int count = 0;
+            if(historyCalculator.Count == 0)
+            {
+                Console.WriteLine("belum ada history");
+            }
+            else
+            {
+                foreach (var item in historyCalculator)
+                {
+                    count++;
+                    Console.WriteLine($"{count}. {item}");
+                }
+            }
+            Console.ReadLine();
+        }
         public void Execute()
         {
             int? inputUser;
@@ -72,6 +101,8 @@ namespace NoobPrjct.AppKalkulator
                     "3. Perkalian\n" +
                     "4. Pembagian\n" +
                     "5. Hasil Bagi\n" +
+                    "6. Faktorial\n" +
+                    "7. History\n" +
                     "9. Exit App\n");
 
                 Console.Write("Pilih: ");
@@ -80,39 +111,54 @@ namespace NoobPrjct.AppKalkulator
                 {
                     case 1:
                         //Penjumalahan
-                        kalkulator.InputUser();
-                        Console.WriteLine($"Hasil Penjumlahan: {kalkulator.Tambah()}");
+                        InputUser();
+                        Console.WriteLine($"Hasil Penjumlahan: {Tambah()}");
+                        historyCalculator.Add(Tambah());
                         Console.ReadLine();
                         break;
 
                     case 2:
                         //Pengurangan
-                        kalkulator.InputUser();
-                        Console.WriteLine($"Hasil Pengurangan: {kalkulator.Kurangi()}");
+                        InputUser();
+                        Console.WriteLine($"Hasil Pengurangan: {Kurangi()}");
+                        historyCalculator.Add(Kurangi());
                         Console.ReadLine();
                         break;
 
                     case 3:
                         //Perkalian
-                        kalkulator.InputUser();
-                        Console.WriteLine($"Hasil Perkalian: {kalkulator.Kali()}");
+                        InputUser();
+                        Console.WriteLine($"Hasil Perkalian: {Kali()}");
+                        historyCalculator.Add(Kali());
                         Console.ReadLine();
                         break;
 
                     case 4:
                         //Pembagian
-                        kalkulator.InputUser();
-                        Console.WriteLine($"Hasil Pembagian: {kalkulator.Bagi()}");
+                        InputUser();
+                        Console.WriteLine($"Hasil Pembagian: {Bagi()}");
+                        historyCalculator.Add(Bagi());
                         Console.ReadLine();
                         break;
 
                     case 5:
                         //Hasil Bagi
-                        kalkulator.InputUser();
-                        Console.WriteLine($"Hasil Bagi: {kalkulator.Modulus()}");
+                        InputUser();
+                        Console.WriteLine($"Hasil Bagi: {Modulus()}");
+                        historyCalculator.Add(Modulus());
                         Console.ReadLine();
                         break;
-
+                    case 6:
+                        Console.Write("Masukkan nilai n: ");
+                        OperandA = double.Parse(Console.ReadLine());
+                        int faktorial = (int)OperandA;
+                        Console.WriteLine($"hasil Faktorial {OperandA}!: {Factorial(faktorial)}");
+                        historyCalculator.Add(Factorial(faktorial));
+                        Console.ReadLine();
+                        break;
+                    case 7:
+                        historyCalculate();
+                        break;
                     default:
                         break;
 

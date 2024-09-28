@@ -48,7 +48,14 @@ namespace NoobPrjct.AppKalkulator
 
         private double Bagi()
         {
-            return OperandA / OperandB;
+            if (OperandA == 0 | OperandB == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return OperandA / OperandB;
+            }
         }
 
         private double Modulus()
@@ -59,8 +66,8 @@ namespace NoobPrjct.AppKalkulator
         private int Factorial(int n)
         {
             if (n == 1)
-            { 
-                return 1; 
+            {
+                return 1;
             }
             else
             {
@@ -71,7 +78,7 @@ namespace NoobPrjct.AppKalkulator
         private void historyCalculate()
         {
             int count = 0;
-            if(historyCalculator.Count == 0)
+            if (historyCalculator.Count == 0)
             {
                 Console.WriteLine("belum ada history");
             }
